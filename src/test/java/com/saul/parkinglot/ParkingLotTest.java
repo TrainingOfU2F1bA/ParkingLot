@@ -1,8 +1,10 @@
 package com.saul.parkinglot;
 
+import com.saul.parkinglot.exception.DuplicatedCarException;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class ParkingLotTest {
     @Test
@@ -12,4 +14,11 @@ class ParkingLotTest {
         Ticket ticket = parkingLog.park(car);
         assertEquals(ticket.getCarId(), car.getCarId());
     }
+
+    @Test
+    void should_return_a_ticket_with_car_id_of_parked_car_when_park_given_one_car_with_a_carId_which_has_been_exist_in_parking_lot() {
+        ParkingLog parkingLog = new ParkingLog();
+        assertThrows(DuplicatedCarException.class, () -> parkingLog.park(new Car("456")));
+    }
+
 }
