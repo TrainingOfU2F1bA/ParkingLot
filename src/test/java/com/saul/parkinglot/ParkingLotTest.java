@@ -19,6 +19,7 @@ class ParkingLotTest {
     @Test
     void should_throw_duplicated_car_exception_when_park_given_one_car_with_a_carId_which_has_been_exist_in_parking_lot() {
         ParkingLog parkingLog = new ParkingLog();
+        parkingLog.park(new Car("456"));
         assertThrows(DuplicatedCarException.class, () -> parkingLog.park(new Car("456")));
     }
 
@@ -51,5 +52,11 @@ class ParkingLotTest {
     void should_throw_ticket_does_not_exist_exception_when_fetch_given_no_ticket() {
         ParkingLog parkingLog = new ParkingLog();
         assertThrows(TicketDoesNotExistException.class, () -> parkingLog.fetch(null));
+    }
+
+    @Test
+    void should_throw_invalid_ticket_exception_when_fetch_given_one_ticket_with_a_carId_of_a_car_which_does_not_exist_in_parking_log() {
+        ParkingLog parkingLog = new ParkingLog();
+        assertThrows(InvalidTicketException.class, () -> parkingLog.fetch(new Ticket("123")));
     }
 }
