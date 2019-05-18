@@ -14,17 +14,16 @@ public class SmartParkingBoy extends GraduateParkingBoy {
         return stream(parkingLogs)
                 .filter(parkingLog -> !parkingLog.isFilled())
                 .sorted(comparingInt(ParkingLog::countRemainSite))
-                .reduce(getFirstParkingLotWithAsMoreRemainAsPossible()
-                )
+                .reduce(getFirstParkingLotWithAsMoreRemainAsPossible())
                 .orElseThrow(NoEnoughCarSiteExpection::new)
                 .park(car);
 
     }
 
     protected BinaryOperator<ParkingLog> getFirstParkingLotWithAsMoreRemainAsPossible() {
-        return (parkingLog,parkingLogWithMoreRemain) ->
-            parkingLogWithMoreRemain.countRemainSite() ==
-                    parkingLog.countRemainSite() ?
-                    parkingLog : parkingLogWithMoreRemain;
+        return (parkingLog, parkingLogWithMoreRemain) ->
+                parkingLogWithMoreRemain.countRemainSite() ==
+                        parkingLog.countRemainSite() ?
+                        parkingLog : parkingLogWithMoreRemain;
     }
 }

@@ -14,15 +14,14 @@ public class SuperParkingBoy extends SmartParkingBoy {
         return stream(parkingLogs)
                 .filter(parkingLog -> !parkingLog.isFilled())
                 .sorted(comparingDouble(ParkingLog::computeRateOfRemain))
-                .reduce(getFirstParkingLotWithAsBiggerRemainRateAsPossible()
-                )
+                .reduce(getFirstParkingLotWithAsBiggerRemainRateAsPossible())
                 .orElseThrow(NoEnoughCarSiteExpection::new)
                 .park(car);
     }
 
     private BinaryOperator<ParkingLog> getFirstParkingLotWithAsBiggerRemainRateAsPossible() {
         return (parkingLog, parkingLogWithBiggerRemainRate) -> {
-            if (parkingLog.computeRateOfRemain() == parkingLogWithBiggerRemainRate.computeRateOfRemain()){
+            if (parkingLog.computeRateOfRemain() == parkingLogWithBiggerRemainRate.computeRateOfRemain()) {
                 return parkingLogWithBiggerRemainRate.countRemainSite() == parkingLog.countRemainSite()
                         ? parkingLog : parkingLogWithBiggerRemainRate;
             }
