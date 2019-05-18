@@ -42,4 +42,10 @@ class ParkingLotTest {
         Ticket ticket = parkingLog.park(new Car("123"));
         assertDoesNotThrow(() -> parkingLog.fetch(ticket));
     }
+
+    @Test
+    void should_throw_invalid_tickect_exception_when_fetch_given_one_ticket_without_a_carId() {
+        ParkingLog parkingLog = new ParkingLog();
+        assertThrows(InvalidTicketException.class, () -> parkingLog.fetch(new Ticket(null)));
+    }
 }
