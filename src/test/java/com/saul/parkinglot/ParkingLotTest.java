@@ -1,9 +1,6 @@
 package com.saul.parkinglot;
 
-import com.saul.parkinglot.exception.CarDoesNotExistException;
-import com.saul.parkinglot.exception.DuplicatedCarException;
-import com.saul.parkinglot.exception.InvalidCarException;
-import com.saul.parkinglot.exception.InvalidTicketException;
+import com.saul.parkinglot.exception.*;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
