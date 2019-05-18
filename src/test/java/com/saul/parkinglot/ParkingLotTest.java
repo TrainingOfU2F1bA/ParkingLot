@@ -23,7 +23,7 @@ class ParkingLotTest {
     }
 
     @Test
-    void should_throw_invaild_car_exception_when_park_given_one_car_without_a_carId() {
+    void should_throw_invalid_car_exception_when_park_given_one_car_without_a_carId() {
         ParkingLog parkingLog = new ParkingLog();
         assertThrows(InvalidCarException.class, () -> parkingLog.park(new Car(null)));
     }
@@ -42,13 +42,13 @@ class ParkingLotTest {
     }
 
     @Test
-    void should_throw_invalid_tickect_exception_when_fetch_given_one_ticket_without_a_carId() {
+    void should_throw_invalid_ticket_exception_when_fetch_given_one_ticket_without_a_carId() {
         ParkingLog parkingLog = new ParkingLog();
         assertThrows(InvalidTicketException.class, () -> parkingLog.fetch(new Ticket(null)));
     }
 
     @Test
-    void should_throw_tickect_does_not_exist_exception_when_fetch_given_no_ticket() {
+    void should_throw_ticket_does_not_exist_exception_when_fetch_given_no_ticket() {
         ParkingLog parkingLog = new ParkingLog();
         assertThrows(TicketDoesNotExistException.class, () -> parkingLog.fetch(null));
     }
