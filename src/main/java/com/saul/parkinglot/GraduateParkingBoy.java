@@ -1,6 +1,6 @@
 package com.saul.parkinglot;
 
-import java.util.Arrays;
+import static java.util.Arrays.stream;
 
 public class GraduateParkingBoy {
     private ParkingLog[] parkingLogs;
@@ -10,6 +10,10 @@ public class GraduateParkingBoy {
     }
 
     public Ticket park(Car car) {
-       return Arrays.stream(parkingLogs).findFirst().get().park(car);
+       return stream(parkingLogs)
+               .filter(parkingLog -> !parkingLog.isFilled())
+               .findFirst()
+               .get()
+               .park(car);
     }
 }

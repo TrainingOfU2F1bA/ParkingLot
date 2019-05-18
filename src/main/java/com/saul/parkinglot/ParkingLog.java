@@ -22,7 +22,7 @@ public class ParkingLog {
             throw new InvalidCarException();
         }
         if (carSites.containsKey(car.getCarId())) throw new DuplicatedCarException();
-        if (carSites.size() >= capacity) {
+        if (isFilled()) {
             throw new NoEnoughCarSiteExpection();
         }
         carSites.put(car.getCarId(), car);
@@ -38,5 +38,9 @@ public class ParkingLog {
         }
         Optional.ofNullable(carSites.remove(ticket.getCarId()))
                 .orElseThrow(InvalidTicketException::new);
+    }
+
+    public boolean isFilled() {
+        return carSites.size() >= capacity;
     }
 }
