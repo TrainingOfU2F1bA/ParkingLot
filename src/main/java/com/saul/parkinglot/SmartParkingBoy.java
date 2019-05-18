@@ -21,7 +21,7 @@ public class SmartParkingBoy extends GraduateParkingBoy {
 
     }
 
-    private BinaryOperator<ParkingLog> getFirstParkingLotWithAsMoreRemainAsPossible() {
+    protected BinaryOperator<ParkingLog> getFirstParkingLotWithAsMoreRemainAsPossible() {
         return (parkingLog,parkingLogWithMoreRemain) ->
             parkingLogWithMoreRemain.countRemainSite() ==
                     parkingLog.countRemainSite() ?

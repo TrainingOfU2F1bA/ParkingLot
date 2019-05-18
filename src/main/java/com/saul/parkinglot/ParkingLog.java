@@ -62,4 +62,8 @@ public class ParkingLog {
     public int countRemainSite() {
         return capacity - carSites.size();
     }
+
+    public double computeRateOfRemain() {
+        return (capacity - carSites.size()) * 1d / capacity;
+    }
 }
