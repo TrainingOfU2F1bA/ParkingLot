@@ -27,4 +27,10 @@ class ParkingLotTest {
         ParkingLog parkingLog = new ParkingLog();
         assertThrows(InvalidCarException.class, () -> parkingLog.park(new Car(null)));
     }
+
+    @Test
+    void should_throw_car_does_not_exist_exception_when_park_given_no_car() {
+        ParkingLog parkingLog = new ParkingLog();
+        assertThrows(CarDoesNotExistException.class, () -> parkingLog.park(null));
+    }
 }
