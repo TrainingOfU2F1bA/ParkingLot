@@ -57,4 +57,9 @@ public class ParkingLog {
     public boolean contains(String carId) {
         return carSites.containsKey(carId);
     }
+
+
+    public int countRemainSite() {
+        return capacity - carSites.size();
+    }
 }

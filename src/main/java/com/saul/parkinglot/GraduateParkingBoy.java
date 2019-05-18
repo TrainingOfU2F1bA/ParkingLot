@@ -4,8 +4,8 @@ import com.saul.parkinglot.exception.NoEnoughCarSiteExpection;
 
 import static java.util.Arrays.stream;
 
-public class GraduateParkingBoy {
-    private ParkingLog[] parkingLogs;
+public class GraduateParkingBoy  {
+    protected ParkingLog[] parkingLogs;
 
     public void manage(ParkingLog... parkingLogs) {
         this.parkingLogs = parkingLogs;
