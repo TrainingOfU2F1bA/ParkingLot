@@ -35,4 +35,14 @@ class GraduateParkingBoyTest {
         verify(parkingLogB, times(1)).park(car);
         assertEquals(ticket.getCarId(), car.getCarId());
     }
+
+    @Test
+    void should_return_a_ticket_with_car_id_and_car_be_parked_on_parkingLotA_of_parked_car_when_park_given_one_car_with_a_carId_which_has_not_been_exist_in_parking_lot_and_parking_log_a_and_b_both_have_not_enough_car_sites() {
+        GraduateParkingBoy parkingBoy = new GraduateParkingBoy();
+        ParkingLog parkingLogA = new ParkingLog(0);
+        ParkingLog parkingLogB = new ParkingLog(0);
+        parkingBoy.manage(parkingLogA, parkingLogB);
+        Car car = new Car("123");
+        assertThrows(NoEnoughCarSiteExpection.class, () -> parkingBoy.park(car));
+    }
 }
