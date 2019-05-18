@@ -85,4 +85,13 @@ class GraduateParkingBoyTest {
         Ticket ticket = parkingBoy.park(new Car("123"));
         assertDoesNotThrow(() -> parkingBoy.fetch(ticket));
     }
+
+    @Test
+    void should_throw_invalid_ticket_exception_when_fetch_given_one_ticket_without_a_carId() {
+        GraduateParkingBoy parkingBoy = new GraduateParkingBoy();
+        ParkingLog parkingLogA = new ParkingLog(1);
+        ParkingLog parkingLogB = new ParkingLog(1);
+        parkingBoy.manage(parkingLogA, parkingLogB);
+        assertThrows(InvalidTicketException.class, () -> parkingBoy.fetch(new Ticket(null)));
+    }
 }
