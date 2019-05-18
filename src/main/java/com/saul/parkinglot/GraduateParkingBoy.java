@@ -19,4 +19,8 @@ public class GraduateParkingBoy {
                .orElseThrow(NoEnoughCarSiteExpection::new)
                .park(car);
     }
+
+    public void fetch(Ticket ticket) {
+
+    }
 }
