@@ -13,6 +13,9 @@ public class ParkingLog {
             throw new InvalidCarException();
         }
         if ("456".equals(car.getCarId())) throw new DuplicatedCarException();
-        return new Ticket();
+        return new Ticket(car.getCarId());
+    }
+
+    public void fetch(Ticket ticket) {
     }
 }

@@ -1,10 +1,13 @@
 package com.saul.parkinglot;
 
 public class Ticket {
-    public Ticket() {
+    private String carId;
+
+    public Ticket(String carId) {
+        this.carId = carId;
     }
 
     public String getCarId() {
-        return "123";
+        return this.carId;
     }
 }
