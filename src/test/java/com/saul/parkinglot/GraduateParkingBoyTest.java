@@ -76,4 +76,13 @@ class GraduateParkingBoyTest {
         assertThrows(CarDoesNotExistException.class, () -> parkingBoy.park(null));
     }
 
+    @Test
+    void should_fetch_success_when_fetch_given_one_ticket_with_a_carId_of_a_car_which_exist_in_parking_log() {
+        GraduateParkingBoy parkingBoy = new GraduateParkingBoy();
+        ParkingLog parkingLogA = new ParkingLog(1);
+        ParkingLog parkingLogB = new ParkingLog(1);
+        parkingBoy.manage(parkingLogA, parkingLogB);
+        Ticket ticket = parkingBoy.park(new Car("123"));
+        assertDoesNotThrow(() -> parkingBoy.fetch(ticket));
+    }
 }
