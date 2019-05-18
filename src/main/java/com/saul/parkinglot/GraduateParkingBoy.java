@@ -1,5 +1,7 @@
 package com.saul.parkinglot;
 
+import com.saul.parkinglot.exception.NoEnoughCarSiteExpection;
+
 import static java.util.Arrays.stream;
 
 public class GraduateParkingBoy {
@@ -13,7 +15,7 @@ public class GraduateParkingBoy {
        return stream(parkingLogs)
                .filter(parkingLog -> !parkingLog.isFilled())
                .findFirst()
-               .get()
+               .orElseThrow(NoEnoughCarSiteExpection::new)
                .park(car);
     }
 }
