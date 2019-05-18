@@ -56,4 +56,15 @@ class GraduateParkingBoyTest {
         parkingBoy.park(car);
         assertThrows(DuplicatedCarException.class, () -> parkingBoy.park(car));
     }
+
+    @Test
+    void should_throw_invalid_car_exception_when_park_given_one_car_without_carId_and_parking_log_a_and_b_both_have_enough_car_sites() {
+        GraduateParkingBoy parkingBoy = new GraduateParkingBoy();
+        ParkingLog parkingLogA = spy(new ParkingLog(1));
+        ParkingLog parkingLogB = spy(new ParkingLog(1));
+        parkingBoy.manage(parkingLogA, parkingLogB);
+        Car car = new Car(null);
+        assertThrows(InvalidCarException.class, () -> parkingBoy.park(new Car(null)));
+    }
+
 }
