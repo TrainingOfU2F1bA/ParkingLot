@@ -21,4 +21,9 @@ class ParkingLotTest {
         assertThrows(DuplicatedCarException.class, () -> parkingLog.park(new Car("456")));
     }
 
+    @Test
+    void should_throw_invaild_car_exception_when_park_given_one_car_without_a_carId() {
+        ParkingLog parkingLog = new ParkingLog();
+        assertThrows(InvalidCarException.class, () -> parkingLog.park(new Car(null)));
+    }
 }
