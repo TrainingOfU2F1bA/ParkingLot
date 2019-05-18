@@ -102,5 +102,10 @@ class GraduateParkingBoyTest {
         assertThrows(TicketDoesNotExistException.class, () -> parkingLog.fetch(null));
     }
 
+    @Test
+    void should_throw_invalid_ticket_exception_when_fetch_given_one_ticket_with_a_carId_of_a_car_which_does_not_exist_in_parking_log() {
+        ParkingLog parkingLog = new ParkingLog(1);
+        assertThrows(InvalidTicketException.class, () -> parkingLog.fetch(new Ticket("123")));
+    }
 
 }
