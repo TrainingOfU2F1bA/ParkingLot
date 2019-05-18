@@ -1,6 +1,7 @@
 package com.saul.parkinglot;
 
 import com.saul.parkinglot.exception.DuplicatedCarException;
+import com.saul.parkinglot.exception.InvalidCarException;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
