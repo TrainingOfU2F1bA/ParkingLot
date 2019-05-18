@@ -5,6 +5,7 @@ import com.saul.parkinglot.exception.DuplicatedCarException;
 import com.saul.parkinglot.exception.InvalidCarException;
 import org.junit.jupiter.api.Test;
 
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
@@ -33,5 +34,12 @@ class ParkingLotTest {
     void should_throw_car_does_not_exist_exception_when_park_given_no_car() {
         ParkingLog parkingLog = new ParkingLog();
         assertThrows(CarDoesNotExistException.class, () -> parkingLog.park(null));
+    }
+
+    @Test
+    void should_fetch_success_when_fetch_given_one_ticket_with_a_carId_of_a_car_which_exist_in_parking_log() {
+        ParkingLog parkingLog = new ParkingLog();
+        Ticket ticket = parkingLog.park(new Car("123"));
+        assertDoesNotThrow(() -> parkingLog.fetch(ticket));
     }
 }
