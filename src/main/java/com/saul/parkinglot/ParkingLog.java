@@ -21,7 +21,7 @@ public class ParkingLog {
         if (car.getCarId() == null) {
             throw new InvalidCarException();
         }
-        if (carSites.containsKey(car.getCarId())) throw new DuplicatedCarException();
+        checkDuplicatedCar(car);
         if (isFilled()) {
             throw new NoEnoughCarSiteExpection();
         }
@@ -42,5 +42,11 @@ public class ParkingLog {
 
     public boolean isFilled() {
         return carSites.size() >= capacity;
+    }
+
+    public void checkDuplicatedCar(Car car) {
+        if (carSites.containsKey(car.getCarId())){
+            throw new DuplicatedCarException();
+        }
     }
 }
