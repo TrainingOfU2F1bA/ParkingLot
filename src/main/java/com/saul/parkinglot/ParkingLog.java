@@ -1,10 +1,14 @@
 package com.saul.parkinglot;
 
+import com.saul.parkinglot.exception.CarDoesNotExistException;
 import com.saul.parkinglot.exception.DuplicatedCarException;
 import com.saul.parkinglot.exception.InvalidCarException;
 
 public class ParkingLog {
     public Ticket park(Car car) {
+        if (car == null) {
+            throw new CarDoesNotExistException();
+        }
         if (car.getCarId() == null) {
             throw new InvalidCarException();
         }

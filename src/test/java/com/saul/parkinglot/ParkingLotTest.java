@@ -1,5 +1,6 @@
 package com.saul.parkinglot;
 
+import com.saul.parkinglot.exception.CarDoesNotExistException;
 import com.saul.parkinglot.exception.DuplicatedCarException;
 import com.saul.parkinglot.exception.InvalidCarException;
 import org.junit.jupiter.api.Test;
