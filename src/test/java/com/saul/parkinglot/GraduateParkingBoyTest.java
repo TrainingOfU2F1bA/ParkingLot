@@ -95,4 +95,12 @@ class GraduateParkingBoyTest {
         parkingBoy.manage(parkingLogA, parkingLogB);
         assertThrows(InvalidTicketException.class, () -> parkingBoy.fetch(new Ticket(null)));
     }
+
+    @Test
+    void should_throw_ticket_does_not_exist_exception_when_fetch_given_no_ticket() {
+        ParkingLog parkingLog = new ParkingLog(1);
+        assertThrows(TicketDoesNotExistException.class, () -> parkingLog.fetch(null));
+    }
+
+
 }
