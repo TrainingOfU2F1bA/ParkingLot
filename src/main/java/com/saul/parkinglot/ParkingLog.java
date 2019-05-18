@@ -7,7 +7,12 @@ import java.util.Optional;
 
 public class ParkingLog {
 
-    HashMap<String, Car> carSites = new HashMap<>();
+    private HashMap<String, Car> carSites = new HashMap<>();
+    private int capacity;
+
+    public ParkingLog(int capacity) {
+        this.capacity = capacity;
+    }
 
     public Ticket park(Car car) {
         if (car == null) {
@@ -17,6 +22,9 @@ public class ParkingLog {
             throw new InvalidCarException();
         }
         if (carSites.containsKey(car.getCarId())) throw new DuplicatedCarException();
+        if (carSites.size() >= capacity) {
+            throw new NoEnoughCarSiteExpection();
+        }
         carSites.put(car.getCarId(), car);
         return new Ticket(car.getCarId());
     }
