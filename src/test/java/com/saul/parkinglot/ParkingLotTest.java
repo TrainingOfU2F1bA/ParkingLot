@@ -16,7 +16,7 @@ class ParkingLotTest {
     }
 
     @Test
-    void should_return_a_ticket_with_car_id_of_parked_car_when_park_given_one_car_with_a_carId_which_has_been_exist_in_parking_lot() {
+    void should_throw_duplicated_car_exception_when_park_given_one_car_with_a_carId_which_has_been_exist_in_parking_lot() {
         ParkingLog parkingLog = new ParkingLog();
         assertThrows(DuplicatedCarException.class, () -> parkingLog.park(new Car("456")));
     }
