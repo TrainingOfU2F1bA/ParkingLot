@@ -21,6 +21,8 @@ public class GraduateParkingBoy {
     }
 
     public void fetch(Ticket ticket) {
-
+        stream(parkingLogs).forEach(parkingLog -> parkingLog.checkTicket(ticket));
+        stream(parkingLogs).filter(parkingLog -> parkingLog.contains(ticket.getCarId()))
+                .findAny().get().fetch(ticket);
     }
 }

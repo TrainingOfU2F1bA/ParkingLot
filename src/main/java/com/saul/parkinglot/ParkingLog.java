@@ -24,12 +24,7 @@ public class ParkingLog {
     }
 
     public void fetch(Ticket ticket) {
-        if (ticket == null) {
-            throw new TicketDoesNotExistException();
-        }
-        if (ticket.getCarId() == null) {
-            throw new InvalidTicketException();
-        }
+        checkTicket(ticket);
         Optional.ofNullable(carSites.remove(ticket.getCarId()))
                 .orElseThrow(InvalidTicketException::new);
     }
@@ -45,8 +40,21 @@ public class ParkingLog {
         if (car.getCarId() == null) {
             throw new InvalidCarException();
         }
-        if (carSites.containsKey(car.getCarId())){
+        if (contains(car.getCarId())){
             throw new DuplicatedCarException();
         }
+    }
+
+    public void checkTicket(Ticket ticket) {
+        if (ticket == null) {
+            throw new TicketDoesNotExistException();
+        }
+        if (ticket.getCarId() == null) {
+            throw new InvalidTicketException();
+        }
+    }
+
+    public boolean contains(String carId) {
+        return carSites.containsKey(carId);
     }
 }
