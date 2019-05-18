@@ -100,21 +100,28 @@ class GraduateParkingBoyTest {
 
     @Test
     void should_throw_ticket_does_not_exist_exception_when_fetch_given_no_ticket() {
-        ParkingLog parkingLog = new ParkingLog(1);
-        assertThrows(TicketDoesNotExistException.class, () -> parkingLog.fetch(null));
+        GraduateParkingBoy parkingBoy = getParkingBoy();
+        ParkingLog parkingLogA = new ParkingLog(1);
+        ParkingLog parkingLogB = new ParkingLog(1);
+        parkingBoy.manage(parkingLogA, parkingLogB);
+        assertThrows(TicketDoesNotExistException.class, () -> parkingBoy.fetch(null));
     }
 
     @Test
     void should_throw_invalid_ticket_exception_when_fetch_given_one_ticket_with_a_carId_of_a_car_which_does_not_exist_in_parking_log() {
-        ParkingLog parkingLog = new ParkingLog(1);
-        assertThrows(InvalidTicketException.class, () -> parkingLog.fetch(new Ticket("123")));
+        GraduateParkingBoy parkingBoy = getParkingBoy();
+        ParkingLog parkingLogA = new ParkingLog(1);
+        ParkingLog parkingLogB = new ParkingLog(1);
+        parkingBoy.manage(parkingLogA, parkingLogB);
+        assertThrows(InvalidTicketException.class, () -> parkingBoy.fetch(new Ticket("123")));
     }
 
     @Test
     void should_throw_no_enough_car_site_exception_when_park_given_one_car_with_a_carId_which_has_not_been_exist_in_parking_lot_but_car_sites_is_not_enough() {
-        ParkingLog parkingLog = new ParkingLog(1);
-        Car car = new Car("123");
-        parkingLog.park(car);
-        assertThrows(NoEnoughCarSiteExpection.class, () -> parkingLog.park(new Car("456")));
+        GraduateParkingBoy parkingBoy = getParkingBoy();
+        ParkingLog parkingLogA = new ParkingLog(0);
+        ParkingLog parkingLogB = new ParkingLog(0);
+        parkingBoy.manage(parkingLogA, parkingLogB);
+        assertThrows(NoEnoughCarSiteExpection.class, () -> parkingBoy.park(new Car("456")));
     }
 }
