@@ -49,4 +49,10 @@ class ParkingLotTest {
         ParkingLog parkingLog = new ParkingLog();
         assertThrows(InvalidTicketException.class, () -> parkingLog.fetch(new Ticket(null)));
     }
+
+    @Test
+    void should_throw_tickect_does_not_exist_exception_when_fetch_given_no_ticket() {
+        ParkingLog parkingLog = new ParkingLog();
+        assertThrows(TicketDoesNotExistException.class, () -> parkingLog.fetch(null));
+    }
 }
