@@ -12,7 +12,7 @@ public class GraduateParkingBoy {
     }
 
     public Ticket park(Car car) {
-        stream(parkingLogs).forEach(parkingLog -> parkingLog.checkDuplicatedCar(car));
+        stream(parkingLogs).forEach(parkingLog -> parkingLog.checkCar(car));
        return stream(parkingLogs)
                .filter(parkingLog -> !parkingLog.isFilled())
                .findFirst()

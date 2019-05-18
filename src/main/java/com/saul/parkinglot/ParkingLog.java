@@ -15,13 +15,7 @@ public class ParkingLog {
     }
 
     public Ticket park(Car car) {
-        if (car == null) {
-            throw new CarDoesNotExistException();
-        }
-        if (car.getCarId() == null) {
-            throw new InvalidCarException();
-        }
-        checkDuplicatedCar(car);
+        checkCar(car);
         if (isFilled()) {
             throw new NoEnoughCarSiteExpection();
         }
@@ -44,7 +38,13 @@ public class ParkingLog {
         return carSites.size() >= capacity;
     }
 
-    public void checkDuplicatedCar(Car car) {
+    public void checkCar(Car car) {
+        if (car == null) {
+            throw new CarDoesNotExistException();
+        }
+        if (car.getCarId() == null) {
+            throw new InvalidCarException();
+        }
         if (carSites.containsKey(car.getCarId())){
             throw new DuplicatedCarException();
         }
