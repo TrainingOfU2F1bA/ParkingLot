@@ -67,4 +67,13 @@ class GraduateParkingBoyTest {
         assertThrows(InvalidCarException.class, () -> parkingBoy.park(new Car(null)));
     }
 
+    @Test
+    void should_throwthrow_car_does_not_exist_exception_when_park_given_no_car_and_parking_log_a_and_b_both_have_enough_car_sites() {
+        GraduateParkingBoy parkingBoy = new GraduateParkingBoy();
+        ParkingLog parkingLogA = spy(new ParkingLog(1));
+        ParkingLog parkingLogB = spy(new ParkingLog(1));
+        parkingBoy.manage(parkingLogA, parkingLogB);
+        assertThrows(CarDoesNotExistException.class, () -> parkingBoy.park(null));
+    }
+
 }
